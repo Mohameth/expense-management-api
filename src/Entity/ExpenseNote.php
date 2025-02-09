@@ -15,18 +15,24 @@ class ExpenseNote
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Date at which the user expense happened
+     */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $noteDate = null;
 
     #[ORM\Column]
     private ?float $amount = null;
 
+    /**
+     * Date at which the user submitted the note in the system
+     */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $submissionDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'expenseNotes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    private ?User $user = null;
 
     #[ORM\Column(type: 'string', enumType: ExpenseType::class)]
     private ?ExpenseType $type = null;
@@ -87,12 +93,12 @@ class ExpenseNote
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

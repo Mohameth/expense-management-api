@@ -49,8 +49,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: ExpenseNote::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $expenseNotes;
 
-    public function __construct()
+    public function __construct(string $email, string $firstName, string $lastName, \DateTimeInterface $dateOfBirth)
     {
+        $this->setEmail($email);
+        $this->setFirstName($firstName);
+        $this->setLastName($lastName);
+        $this->setDateOfBirth($dateOfBirth);
+
         $this->expenseNotes = new ArrayCollection();
     }
 

@@ -24,8 +24,10 @@ class Company
     #[ORM\OneToMany(targetEntity: expenseNote::class, mappedBy: 'company')]
     private Collection $expenseNotes;
 
-    public function __construct()
+    public function __construct(string $name)
     {
+        $this->setName($name);
+        
         $this->expenseNotes = new ArrayCollection();
     }
 
