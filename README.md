@@ -3,7 +3,7 @@
 This is a small project about an employee needing to handle his expense notes from multiple companies. 
 
 ## Structure
-3 entities: User, Company and, ExpenseNote. A User can have multiple ExpenseNote, each ExpenseNote is linked to a company and a User. 
+There are three entities: User, Company and, ExpenseNote. A User can have multiple ExpenseNote, each ExpenseNote is linked to a company and a User. 
 
 ## Details 
 Project use Symfony 6.4, MySQL and PHPUnit
