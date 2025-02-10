@@ -7,6 +7,7 @@ use App\Enum\ExpenseType;
 use App\Repository\CompanyRepository;
 use App\Repository\ExpenseNoteRepository;
 use App\Repository\UserRepository;
+use App\Service\JwtService;
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -133,5 +134,12 @@ final class ExpenseNoteController extends AbstractController
         $this->entityManager->flush();
 
         return $this->json(['message' => 'Expense note deleted'], 204);
+    }
+
+    #[Route('/protected/test', name: 'test-protected', methods: ['GET'])]
+    public function getExpenses(): JsonResponse
+    {
+
+        return $this->json(['message' => 'Verification passed!'], 200);
     }
 }
