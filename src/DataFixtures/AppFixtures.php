@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
             [new \DateTime('2024-10-30'), 99.7, ExpenseType::FUEL, new \DateTime(), $mainUser, $microsoft],
             [new \DateTime('2024-11-12'), 12,   ExpenseType::TOLL, new \DateTime(), $mainUser, $apple],
             [new \DateTime('2025-01-04'), 24.3, ExpenseType::MEAL, new \DateTime(), $mainUser, $apple]
-        ]);var_dump($expenseNotes);
+        ]);
 
         foreach ($expenseNotes as $expenseNote) {
             $manager->persist($expenseNote);

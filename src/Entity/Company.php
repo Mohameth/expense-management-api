@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Ignore;
+
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
 class Company
 {
@@ -21,7 +23,8 @@ class Company
     /**
      * @var Collection<int, expenseNote>
      */
-    #[ORM\OneToMany(targetEntity: expenseNote::class, mappedBy: 'company')]
+    #[Ignore]
+    #[ORM\OneToMany(targetEntity: ExpenseNote::class, mappedBy: 'company')]
     private Collection $expenseNotes;
 
     public function __construct(string $name)
@@ -56,7 +59,7 @@ class Company
         return $this->expenseNotes;
     }
 
-    public function addExpenseNote(expenseNote $expenseNote): static
+    public function addExpenseNote(ExpenseNote $expenseNote): static
     {
         if (!$this->expenseNotes->contains($expenseNote)) {
             $this->expenseNotes->add($expenseNote);
@@ -66,7 +69,7 @@ class Company
         return $this;
     }
 
-    public function removeExpenseNote(expenseNote $expenseNote): static
+    public function removeExpenseNote(ExpenseNote $expenseNote): static
     {
         if ($this->expenseNotes->removeElement($expenseNote)) {
             // set the owning side to null (unless already changed)
