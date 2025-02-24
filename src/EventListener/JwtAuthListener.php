@@ -19,8 +19,8 @@ class JwtAuthListener
     {
         $request = $event->getRequest();
 
-        if (!str_starts_with($request->getPathInfo(), '/api/protected')) {
-            return; // Ignore les autres routes
+        if (!str_starts_with($request->getPathInfo(), '/api/expenses/protected')) {
+            return;
         }
 
         $authHeader = $request->headers->get('Authorization');
@@ -35,7 +35,6 @@ class JwtAuthListener
             return;
         }
 
-        // Ajouter l'ID utilisateur dans la requête
         $request->attributes->set('user_id', $token->claims()->get('uid'));
     }
 }

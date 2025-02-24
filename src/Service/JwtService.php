@@ -7,6 +7,10 @@ use Lcobucci\JWT\Token;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 
+use Lcobucci\JWT\Validation\Constraint;
+use Lcobucci\JWT\Validation\Constraint\ValidAt;
+use Lcobucci\Clock\SystemClock;
+
 class JwtService
 {
     private Configuration $config;
@@ -17,6 +21,11 @@ class JwtService
         $this->config = Configuration::forSymmetricSigner(
             new \Lcobucci\JWT\Signer\Hmac\Sha256(),
             InMemory::plainText('your_secret_key')
+        );
+
+        // Set validation constraints
+        $this->config->setValidationConstraints(
+            new ValidAt(SystemClock::fromUTC()) // Ensure token is not expired
         );
     }
 

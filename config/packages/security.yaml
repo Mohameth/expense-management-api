@@ -19,7 +19,7 @@ security:
             lazy: true
             provider: app_user_provider
         api:
-            pattern: ^/api/protected
+            pattern: ^/api/expenses/protected
             stateless: true
             custom_authenticator: App\EventListener\JwtAuthListener
 
